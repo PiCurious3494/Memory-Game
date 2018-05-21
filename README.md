@@ -21,3 +21,5 @@ This game illistrates the following basic concepts in css and javascript:
 4. for loops
 5. css transform and transition 
 
+# Credits 
+I would like to give credit to the following tutorial which helped me understand the base concepts https://www.youtube.com/watch?v=c_ohDPWmsM0.  I then added the flip, stars, modal, and timing functions based on the concepts I learned.  
