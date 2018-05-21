@@ -30,11 +30,11 @@ function newBoard() {
 	tileFlipped = 0; 
 	var output = '';	
 	var star = ''; 
-	
+	//*****code block is from https://www.youtube.com/watch?v=c_ohDPWmsM0 5/18/2018
 	shufflecardArray(cardArray); 
 	for (var i=0; i < cardArray.length; i++) {	
 		output += '<div class="fa front" id = "tile_'+i+'"onclick=flipTile(this,\''+cardArray[i]+'\')></div>'; 
-		
+	//***	
 	}
 	document.getElementById('memoryBoard').innerHTML = output;
 	for (var k=0; k < 4; k++){
@@ -79,8 +79,9 @@ function flipTile(tile, val) {
 			}	
 			document.getElementById('star').innerHTML = star;
 		}
+//the following concept for comparing two values in a new array was modified from https://www.youtube.com/watch?v=c_ohDPWmsM0
 	  if(cardValues.length == 0) {
-	    tile.className = "fa back"; 
+	    	tile.className = "fa back"; 
 		cardValues.push(val); 
 		cardTile_ids.push(tile.id); 
 	  } else if (cardValues.length == 1) {
@@ -128,7 +129,6 @@ function flipTile(tile, val) {
 		var hour = Math.floor(totalSecs/3600); 
 		var min= Math.floor((totalSecs-hour*3600)/60); 
 		var secs = totalSecs - (hour*3600 + min*60); 
-		
 		timer.value = hour + ": " + min + ": " + secs; 
 	
 	}
