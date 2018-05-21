@@ -151,6 +151,8 @@ label {
 	font-size: 30px; 
 }
 
+//code for shake from https://www.w3schools.com/howto/howto_css_shake_image.asp  5/18/2018
+
 .shake {
 	
 	background:#FFAD5E; 
@@ -173,6 +175,7 @@ label {
 	  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
+//I have been using this popup for a long time.  I have modified it numerous times and have forgotten the orignal source 
 .popup {
 	display:block; 
 	position: fixed;
