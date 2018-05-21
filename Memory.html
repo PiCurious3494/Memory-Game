@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Memory Game</title>
+	  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	  <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+<script>
+var cardArray = ['&#xf4ba','&#xf4ba','&#xf52e','&#xf52e','&#xf535','&#xf535','&#xf520','&#xf520','&#xf188','&#xf188','&#xf1fd','&#xf1fd','&#xf1b9','&#xf1b9','&#xf2cd','&#xf2cd'];
+var cardValues = []; 
+var cardTile_ids = []; 
+var tileFlipped = 0; 
+var count = 0;
+var timerSet = null;  
+var totalSecs = 0; 
+var modal = "";
+
+function shufflecardArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function newBoard() {
+	numOfMoves.value = count; 
+	timer.value = "0:0:00"; 
+	tileFlipped = 0; 
+	var output = '';	
+	var star = ''; 
+	
+	shufflecardArray(cardArray); 
+	for (var i=0; i < cardArray.length; i++) {	
+		output += '<div class="fa front" id = "tile_'+i+'"onclick=flipTile(this,\''+cardArray[i]+'\')></div>'; 
+		
+	}
+	document.getElementById('memoryBoard').innerHTML = output;
+	for (var k=0; k < 4; k++){
+		star += '<i class="fas fa-star"></i>'; 	
+	}
+	document.getElementById('star').innerHTML = star;
+}
+function flipTile(tile, val) {
+	
+	if (timerSet === null){
+	timerCounter();
+	timerSet = setInterval(timerCounter, 1000);
+	}
+	 if(tile.innerHTML == "" && cardValues.length <2) {
+		 count += 1; 
+		 numOfMoves.value = count; 
+		 tile.innerHTML = val; 
+		 var j = 0; 
+		 //if statements for star rating 
+		 if(count == 20){
+			star = ''; 
+			for (j=0; j < 3; j++){
+				star += '<i class="fas fa-star"></i>'; 	
+			}
+			star += '<i class="far fa-star"></i>';
+			document.getElementById('star').innerHTML = star;
+		 }
+		 else if (count == 30) {
+			star = ''; 
+			for (j=0; j < 2; j++){
+				star += '<i class="fas fa-star"></i>'; 	
+			}
+			star += '<i class="far fa-star"></i><i class="far fa-star"></i>';
+			document.getElementById('star').innerHTML = star;
+		 }
+		 
+		  else if (count == 40) {
+			star = ''; 
+			star = '<i class="fas fa-star"></i>';
+			for (j=0; j < 3; j++){
+				star += '<i class="far fa-star"></i>'; 	
+			}	
+			document.getElementById('star').innerHTML = star;
+		}
+	  if(cardValues.length == 0) {
+	    tile.className = "fa back"; 
+		cardValues.push(val); 
+		cardTile_ids.push(tile.id); 
+	  } else if (cardValues.length == 1) {
+			tile.className = "fa back"; 
+			cardValues.push(val); 
+			cardTile_ids.push(tile.id); 
+			if(cardValues[0] == cardValues[1]) {
+				tileFlipped += 2; 
+				//Clear both arrays
+				cardValues = []; 
+				cardTile_ids = []; 
+				//are all matches made create modal
+				if (tileFlipped == cardArray.length) {
+					setTimeout(popUp, 700); 
+				}
+			}else{
+				var tile_1 = document.getElementById(cardTile_ids[0]); 
+				var tile_2 = document.getElementById(cardTile_ids[1]);
+				//add shake if no match
+				function shake(){
+				tile_1.className = "fa shake"; 
+				tile_2.className = "fa shake"; 
+				}
+				//flips the cards back
+				function turnBack() {
+				tile_1.className = "fa front"; 
+				tile_2.className = "fa front"; 
+				tile_1.innerHTML = "";  
+				tile_2.innerHTML = ""; 
+				//Clear both arrays
+				cardValues = []; 
+				cardTile_ids = []; 
+				}
+			}
+			setTimeout(shake, 500); 
+			setTimeout(turnBack, 2000); 
+			
+		}
+	  }
+ 
+	}
+
+	function timerCounter(){
+		++totalSecs; 
+		var hour = Math.floor(totalSecs/3600); 
+		var min= Math.floor((totalSecs-hour*3600)/60); 
+		var secs = totalSecs - (hour*3600 + min*60); 
+		
+		timer.value = hour + ": " + min + ": " + secs; 
+	
+	}
+	
+	function reset(){
+		modal = document.getElementById("popup");
+		modal.className = "popClosed"; 
+		cardValues = []; 
+		cardTile_ids = []; 
+		tileFlipped = 0; 
+		count = 0;
+		totalSecs = 0; 
+		window.clearInterval(timerSet)
+		timerSet = null; 
+		newBoard(); 
+	
+	}
+
+	function popUp(){
+		window.clearInterval(timerSet)
+		modal = document.getElementById("popup");
+		modal.className = "popup"; 
+		document.getElementById('starTotal').innerHTML = star;
+		totalMoves.value = count;
+		totalTime.value = timer.value; 
+	}
+	function closePop(){
+		modal = document.getElementById("popup");
+		modal.className = "popClosed"; 
+	}
+
+</script>
+<link rel="stylesheet" href="css/styles.css" type="text/css"/>
+</head> 
+<body onload="newBoard()">
+	
+	<div class="resetBtn"><label for="reset">Reset<br/><button name="reset" id="reset" type="button" onclick="reset()"><i class="fas fa-redo"></i></button></label></div>
+	<div id="star">
+	</div>
+	<div class="container">
+	<div class="numBox">
+		<label for="numOfMoves">Number of Moves<input type="text" name="numOfMoves" id="numOfMoves" readonly="true"/></label>
+	</div>
+	<div class="timerBox">
+		<label for="timer">Timer<input type="text" name="timer" id="timer" readonly="true"/></label>
+	</div>
+		
+	</div>
+    <div id="memoryBoard">
+	</div>
+		  <div class="popClosed" id="popup">
+			<div class="popup_inner">
+			<button class="closeBtn" onClick="closePop()">X</button>
+				<div class="innerText">
+					<div id="starTotal">
+					</div>
+					<label for="totalMoves">Total Moves<input type="text" name="totalMoves" id="totalMoves" readonly="true"/></label>
+					<label for="totalTime">Total Time<input type="text" name="totalTime" id="totalTime" readonly="true"/></label>						
+				</div>
+					  
+			<button class="newBtn" onClick="reset()">New Game</button>
+			
+			  
+			</div>
+		  </div>
+	 
+	
+</body>
+</html>
+
+
+    

@@ -1,0 +1,364 @@
+ button:focus{
+	outline:0;
+ }
+ 
+  button:hover{
+	background:#0099D4;
+	color:#FFF; 	
+ }
+
+#memoryBoard{
+
+	 width:530px;
+	 height:540px; 
+	 margin: 0px auto;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;	 
+	 
+ }
+#memoryBoard > div{
+	display: inline-block; 
+	 border-radius: 10px;
+	 width:71px;
+	 height:71px;
+	 float:left; 
+	 padding:20px; 
+	 margin: 10px; 
+	 font-size:64px; 
+	 cursor: pointer; 
+	 text-align:center; 
+    position: relative;
+    -webkit-transition: -webkit-transform 1s;
+    -moz-transition: -moz-transform 1s;
+    -o-transition: -o-transform 1s;
+    transition: all .3s ease;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: 50% 50%;
+	
+
+}
+.front {
+	display:block; 
+	background:#0099D4; 
+	position:absolute; 
+	-webkit-transform: rotateY(180deg );
+    -moz-transform: rotateY(180deg );
+    -o-transform: rotateY(180deg );
+    transform: rotateY(180deg );
+
+
+}
+
+.fa {
+	color: #8EA7E8;
+
+}
+
+#star{
+	margin-top: 20px; 
+	width:100%; 
+	text-align: center;
+	outline:none; 	
+	
+}
+.fas.fa-star {
+
+	color: #FFE22D;
+	font-size:30px; 
+}
+.far.fa-star {
+
+	color: #FFE22D;
+	font-size:30px; 
+}
+
+.back {
+	display: inline-block; 
+	position:absolute; 
+	background:#91FFFF;
+	-webkit-transform: rotateY(0deg );
+    -moz-transform: rotateY(0deg );
+    -o-transform: rotateY(0deg );
+    transform: rotateY(0deg );
+}
+.container{
+	margin: 0px auto;
+	width:50%; 
+	height: 80px; 
+
+	
+
+}
+label {
+	max-width: 220px; 
+	width:0px;
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 20px;
+	white-space:nowrap;
+	
+}
+
+
+.numBox {
+	max-width: 220px; 
+	margin-top: 20px;  
+	float:left; 
+}
+
+#numOfMoves {
+
+	margin-left: 15px; 	
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 22px; 
+}
+
+.timerBox {
+	max-width: 160px; 
+	margin-top: 20px; 
+	float:right; 
+}
+
+
+#timer {
+ 
+	margin-left: 15px; 	
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 22px; 
+}
+
+.resetBtn {
+	margin-top: 20px; 
+	width:100%; 
+	text-align: center;
+	outline:none; 
+}
+
+
+#reset {
+	margin-top: 10px; 
+	width:50%; 
+	text-align: center; 
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 30px; 
+}
+
+.shake {
+	
+	background:#FFAD5E; 
+	animation: shake 0.5s;
+    animation-iteration-count: 5s;
+	
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(1px, 1px) rotate(0deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.popup {
+  display:block; 
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.5);
+}
+.popup_inner {
+	width: 300px;
+	height: 300px;
+    background-color: white; 
+	position: absolute; 
+	background-repeat: no-repeat; 
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+     border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+
+.closeBtn{
+	margin-top: 4px;
+	margin-left: 270px;
+	background-color:#f5f5f5; 
+	border: none;
+}
+
+.innerText {
+	margin-top: 50px;
+	margin: 20px;	
+}
+
+.newBtn {
+	margin-top: 70px; 
+	margin-left: 105px; 
+	text-align: center; 
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 15px; 	
+}
+
+#totalMoves {
+	max-width: 70px; 
+	margin-left: 15px; 	
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 20px; 
+	margin-top: 25px; 
+}
+
+#totalTime {
+	max-width: 150px; 
+	margin-left: 15px; 	
+	border: none; 
+	font-family: 'Orbitron', sans-serif;
+	font-size: 20px; 
+	margin-top: 25px; 
+}
+
+.popClosed {
+	display:none; 
+}
+
+#starTotal{
+	margin-left: 67px;
+}
+
+@media screen and (max-width: 1000px) {
+	
+	#memoryBoard{
+		width: 455px; 
+	}
+	
+	#memoryBoard > div{
+		width: 51px; 
+		height: 51px; 	
+	}
+	
+	label{
+		font-size: 18px;
+	}
+	
+	.container{
+		height:60px; 
+	}
+	
+	#timer {
+		font-size: 18px; 
+	}
+
+
+	#numOfMoves {
+		font-size: 18px; 
+	}
+	
+}
+
+@media screen and (max-width: 830px) {
+	
+	#memoryBoard{
+		width: 432px; 
+	}
+	
+	#memoryBoard > div{
+		font-size: 48px; 
+		width: 48px; 
+		height: 48px; 	
+	}
+	
+	label{
+		max-width: 110px; 
+		font-size: 15px;
+	}
+	
+	.fas.fa-star {
+		font-size:25px; 
+	}
+	.far.fa-star {
+		font-size:25px; 
+	}
+	
+	
+	#timer {
+		font-size: 15px; 
+	}
+
+
+	#numOfMoves {
+		font-size: 15px; 
+	}
+	
+	#reset {
+		font-size: 25px; 
+	}
+	.numBox {
+		max-width: 110px;  
+	}
+	.timerBox {
+		max-width: 110px; 
+	}
+
+}
+
+@media screen and (max-width: 600px) {
+	
+	#memoryBoard > div{
+		font-size: 47px; 
+		padding: 18px; 	
+	}
+
+	label{
+		max-width: 0px; 
+		font-size: 12px;
+	}
+	.resetBtn {
+		margin-left: 11%; 
+	}
+	#star{
+		margin-left: 11%;  		
+	}
+		
+	.container{
+		width:80%; 
+	}
+	
+	#timer {
+		font-size: 12px; 
+	}
+
+
+	#numOfMoves {
+		font-size: 12px; 
+	}
+	
+	.timerBox {
+		max-width: 15px; 
+	}
+	
+	.popup_inner {
+		top: 40%; left: 40%;
+	}
+
+}
+
